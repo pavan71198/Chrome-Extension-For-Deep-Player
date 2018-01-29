@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Recothem</title>	
+    	<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <div id="not-logged-in" class="d-none container">
+            <br><br><br><br><br><br>
+            <div class="row align-items-center text-center">
+                <div class="col">
+                    You are not logged in, please login to <br>
+                    <a target="_blank" href="http://localhost:8000/accounts/login/">Deep Player</a>
+                </div>
+            </div>
+            <br><br><br>
+        </div>
+        <div id="youtube" class="d-none container">
+            <br><br><br><br><br>
+            <div id="upload-form" class="row align-items-center text-center">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <input class="form-control" placeholder="Enter a name for this video" id="video-name">
+                    <br>
+                    <button class="btn btn-default" id="upload-button">Upload this video</button>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div id="upload-success" class="row align-items-center text-center d-none">
+                <div class="col">
+                    Video upload request successfully sent to <br> <a target="_blank" href="http://localhost:8000/">Deep Player</a>
+                </div>
+            </div>
+            <br><br><br>
+            
+        </div>
+        <div id="not-youtube" class="d-none container">
+            <br><br><br><br><br><br>
+            <div class="row align-items-center text-center">
+                <div class="col">
+                    Open a YouTube video to upload it.
+                </div>
+            </div>
+            <br><br><br>
+        </div>
+        <script src="jquery-3.2.1.slim.min.js"></script>
+        <script src="bootstrap.min.js"></script>
+        <script src="popup.js" type="text/javascript"></script>
+    </body>
