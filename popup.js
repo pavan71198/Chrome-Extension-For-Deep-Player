@@ -29,23 +29,23 @@ $(document).ready(function(){
                             $('#youtube').removeClass('d-none');
                             var videoid = tabURL.searchParams.get("v");
                             console.log(videoid);
-                            $('#upload-button').onclick(function(){
-                                var videoname = $('#video-name').value();
+                            $('#upload-button').on('click',function(){
+                                var videoname = $('#video-name').val();
                                 $.ajax({
-                                    url: "http://localhost:8000/uploadvideo",
+                                    url: "http://localhost:8000/uploadvideo/",
                                    type: "POST",
                                    data: {
                                        videoname: videoname,
-                                       source: "youtube",
+                                       source: 'youtube',
                                        videoid: videoid,
                                        csrfmiddlewaretoken: csrftoken
                                    },
                                    success: function () {
                                        $('#upload-success').removeClass("d-none");
                                        $('#upload-form').addClass("d-none");
-                                       console.log("Upload request successfull");
+                                       console.log("Upload request successful");
                                    },
-                                   error:function(){
+                                   error: function(){
                                        console.log("Upload error");
                                    }
                                 });
