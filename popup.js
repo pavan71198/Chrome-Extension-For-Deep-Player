@@ -6,14 +6,14 @@ $(document).ready(function(){
     var csrftoken = "";
     var sessionid = "";
 
-    chrome.cookies.get({url: 'http://localhost:8000/', name: 'csrftoken'},
+    chrome.cookies.get({url: 'http://deep-player-new-dev.ap-south-1.elasticbeanstalk.com/', name: 'csrftoken'},
         function (cookie) {
             console.log(cookie);
             csrftoken = cookie.value;
         }
     );
 
-    chrome.cookies.get({url: 'http://localhost:8000/', name: 'sessionid'},
+    chrome.cookies.get({url: 'http://deep-player-new-dev.ap-south-1.elasticbeanstalk.com/', name: 'sessionid'},
         function (cookie) {
             console.log(cookie);
             if (cookie){
@@ -32,7 +32,7 @@ $(document).ready(function(){
                             $('#upload-button').on('click',function(){
                                 var videoname = $('#video-name').val();
                                 $.ajax({
-                                    url: "http://localhost:8000/uploadvideo/",
+                                    url: "http://deep-player-new-dev.ap-south-1.elasticbeanstalk.com/uploadvideo/",
                                    type: "POST",
                                    data: {
                                        videoname: videoname,
