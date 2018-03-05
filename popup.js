@@ -6,14 +6,14 @@ $(document).ready(function(){
     var csrftoken = "";
     var sessionid = "";
 
-    chrome.cookies.get({url: 'http://deep-player-new-dev.ap-south-1.elasticbeanstalk.com/', name: 'csrftoken'},
+    chrome.cookies.get({url: 'http://deep-player.eastus.cloudapp.azure.com/', name: 'csrftoken'},
         function (cookie) {
             console.log(cookie);
             csrftoken = cookie.value;
         }
     );
 
-    chrome.cookies.get({url: 'http://deep-player-new-dev.ap-south-1.elasticbeanstalk.com/', name: 'sessionid'},
+    chrome.cookies.get({url: 'http://deep-player.eastus.cloudapp.azure.com/', name: 'sessionid'},
         function (cookie) {
             console.log(cookie);
             if (cookie){
@@ -24,18 +24,17 @@ $(document).ready(function(){
                 chrome.tabs.query({active: true, currentWindow: true},
                     function(tabs){
                         var tabURL = new URL(tabs[0].url);
+                        var videoname = tabs[0].title;
                         if (tabURL.host == "www.youtube.com"){
-                            console.log(tabURL);
                             $('#youtube').removeClass('d-none');
                             var videoid = tabURL.searchParams.get("v");
-                            console.log(videoid);
                             $('#upload-button').on('click',function(){
                                 var videoname = $('#video-name').val();
                                 $.ajax({
-                                    url: "http://deep-player-new-dev.ap-south-1.elasticbeanstalk.com/uploadvideo/",
+                                    url: "http://deep-player.eastus.cloudapp.azure.com/uploadvideo/",
                                    type: "POST",
                                    data: {
-                                       videoname: videoname,
+                                       videoName: videoname,
                                        source: 'youtube',
                                        videoid: videoid,
                                        csrfmiddlewaretoken: csrftoken
@@ -43,7 +42,6 @@ $(document).ready(function(){
                                    success: function () {
                                        $('#upload-success').removeClass("d-none");
                                        $('#upload-form').addClass("d-none");
-                                       console.log("Upload request successful");
                                    },
                                    error: function(){
                                        console.log("Upload error");
@@ -52,7 +50,6 @@ $(document).ready(function(){
                             });
                         }
                         else{
-                            console.log(tabURL);
                             $('#not-youtube').removeClass('d-none');
                             $("#youtube").addClass("d-none");
                         }
