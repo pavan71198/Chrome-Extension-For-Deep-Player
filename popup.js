@@ -8,14 +8,12 @@ $(document).ready(function(){
 
     chrome.cookies.get({url: 'http://deep-player.eastus.cloudapp.azure.com/', name: 'csrftoken'},
         function (cookie) {
-            console.log(cookie);
             csrftoken = cookie.value;
         }
     );
 
     chrome.cookies.get({url: 'http://deep-player.eastus.cloudapp.azure.com/', name: 'sessionid'},
         function (cookie) {
-            console.log(cookie);
             if (cookie){
                 sessionid = cookie;
                 var userid = sessionid.user_id;
@@ -29,12 +27,11 @@ $(document).ready(function(){
                             $('#youtube').removeClass('d-none');
                             var videoid = tabURL.searchParams.get("v");
                             $('#upload-button').on('click',function(){
-                                var videoname = $('#video-name').val();
                                 $.ajax({
                                     url: "http://deep-player.eastus.cloudapp.azure.com/uploadvideo/",
                                    type: "POST",
                                    data: {
-                                       videoName: videoname,
+                                       videoname: videoname,
                                        source: 'youtube',
                                        videoid: videoid,
                                        csrfmiddlewaretoken: csrftoken
